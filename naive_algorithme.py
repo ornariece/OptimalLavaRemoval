@@ -63,7 +63,7 @@ def good_cover(Map):
 
 def best_cover(Map):
     Covers = good_cover(Map)
-    return max(Covers, key= lambda x: len(x[1]))
+    return min(Covers, key= lambda x: len(x[1]))
 
 
 print(best_cover(np.array([[0, 1], [0, 1]])))
