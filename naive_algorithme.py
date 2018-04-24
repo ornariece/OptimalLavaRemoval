@@ -1,6 +1,7 @@
 # Algo naïf pour résoudre le pb
 
 import numpy as np
+from copy import deepcopy
 
 
 def binary(n, length):
@@ -24,15 +25,19 @@ def is_correct(Map):
     return not 1 in Map
 
 
-def cover(Map, Centers):
+def cover(M, Centers):
     mod = []
+    nbl, nbc = M.shape
     for center in Centers:
+        x = center[0]
+        y = center[1]
         for i in range(15):
             for j in range(15):
-                mod += [center + (i,j), center + (-i,j), center + (i, -j), center + (-i, -j)]
+                mod += [(x+i, y+j), (x-i, y+j), (x+i, y-j), (x-i, y-i)]
     for coord in mod:
-        Map[coord] = 0
-    return Map
+        if coord[0] < nbl and coord[1] < nbc and coord[0] >= 0 and coord[1] >= 0:
+            M[coord] = 0
+    return M
 
 
 def good_cover(Map):
@@ -45,7 +50,7 @@ def good_cover(Map):
     (nbl, nbc) = Map.shape
     for i in range(2**(nbl*nbc)):
         Centers = []
-        M = Map.__deepcopy__()
+        M = deepcopy(Map)
         D = binary(i, nbl*nbc)
         for j in range(len(D)):
             if D[j] == 1:
@@ -59,3 +64,7 @@ def good_cover(Map):
 def best_cover(Map):
     Covers = good_cover(Map)
     return max(Covers, key= lambda x: len(x[1]))
+
+
+print(best_cover(np.array([[0, 1], [0, 1]])))
+print(cover(np.array([[0, 1], [0, 1]]), [(0, 0)]))
