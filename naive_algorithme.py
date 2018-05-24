@@ -22,21 +22,22 @@ def ind2lc(ind, nbl, nbc):
     return (ind//nbc, ind%nbc)
 
 def is_correct(Map):
-    return not 1 in Map
+    return 1 not in Map
 
 
 def cover(M, Centers):
-    mod = []
     nbl, nbc = M.shape
     for center in Centers:
         x = center[0]
         y = center[1]
-        for i in range(15):
-            for j in range(15):
-                mod += [(x+i, y+j), (x-i, y+j), (x+i, y-j), (x-i, y-i)]
-    for coord in mod:
-        if coord[0] < nbl and coord[1] < nbc and coord[0] >= 0 and coord[1] >= 0:
-            M[coord] = 0
+        l_min = max(0, x - 14)
+        l_max = min(nbl, x + 14)
+        c_min = max(0, y - 14)
+        c_max = min(nbc, y + 14)
+        l = l_max - l_min
+        c = c_max - c_min
+        rng = np.zeros((l, c))
+        M[l_min:l_max, c_min:c_max] = rng
     return M
 
 
@@ -67,4 +68,4 @@ def best_cover(Map):
 
 
 print(best_cover(np.array([[0, 1], [0, 1]])))
-print(cover(np.array([[0, 1], [0, 1]]), [(0, 0)]))
+print(cover(np.array([[0, 1], [0, 1]]), [(1, 1)]))
