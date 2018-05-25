@@ -5,6 +5,12 @@ from copy import deepcopy
 
 
 def binary(n, length):
+    """
+
+    :param n: an integrer
+    :param length: the length of the result
+    :return: the str that represent n in binary
+    """
     res = []
     while n != 0:
         a = n%2
@@ -19,13 +25,31 @@ def binary(n, length):
 
 
 def ind2lc(ind, nbl, nbc):
+    """
+
+    :param ind: the indice of a position
+    :param nbl: the number of lines in the map
+    :param nbc: the number of columns in the map
+    :return: (number_of_lines, number_of_columns) of this position
+    """
     return (ind//nbc, ind%nbc)
 
 def is_correct(Map):
+    """
+
+    :param Map: a array of positions, 0 for bloc and 1 for lava
+    :return: the bool saying if there isn't anymore lava in the map
+    """
     return 1 not in Map
 
 
 def cover(M, Centers):
+    """
+
+    :param M: an array of positions (a map)
+    :param Centers: a list of coordinates witch indicates where to place the centers of squares to cover the map
+    :return: the map after cover
+    """
     nbl, nbc = M.shape
     for center in Centers:
         x = center[0]
@@ -44,8 +68,8 @@ def cover(M, Centers):
 def good_cover(Map):
     """
     :type Map: np.ndarray
-    :param Map:
-    :return:
+    :param Map: an array of positions (a map)
+    :return: the list of list of centers that cover the map so that there isn't anymore lava
     """
     Res = []
     (nbl, nbc) = Map.shape
@@ -63,6 +87,11 @@ def good_cover(Map):
 
 
 def best_cover(Map):
+    """
+
+    :param Map: an array of positions (a map)
+    :return: the best cover for the map: the one that use the less squares
+    """
     Covers = good_cover(Map)
     return min(Covers, key= lambda x: len(x[1]))
 
