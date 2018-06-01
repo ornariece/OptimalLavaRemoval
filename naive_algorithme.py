@@ -13,9 +13,9 @@ def binary(n, length):
     """
     res = []
     while n != 0:
-        a = n%2
+        a = n % 2
         if a == 1:
-           res = [1] + res
+            res = [1] + res
         elif a == 0:
             res = [0] + res
         n = n//2
@@ -32,7 +32,8 @@ def ind2lc(ind, nbl, nbc):
     :param nbc: the number of columns in the map
     :return: (number_of_lines, number_of_columns) of this position
     """
-    return (ind//nbc, ind%nbc)
+    return ind//nbc, ind % nbc
+
 
 def is_correct(Map):
     """
@@ -93,7 +94,7 @@ def best_cover(Map):
     :return: the best cover for the map: the one that use the less squares
     """
     Covers = good_cover(Map)
-    return min(Covers, key= lambda x: len(x[1]))
+    return min(Covers, key=lambda x: len(x[1]))
 
 
 print(best_cover(np.array([[0, 1], [0, 1]])))
