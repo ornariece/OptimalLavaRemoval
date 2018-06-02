@@ -1,4 +1,4 @@
-# Algo naïf pour résoudre le pb
+# naive algorithm to solve the problem
 
 import numpy as np
 from copy import deepcopy
@@ -7,9 +7,9 @@ from copy import deepcopy
 def binary(n, length):
     """
 
-    :param n: an integrer
+    :param n: an integer
     :param length: the length of the result
-    :return: the str that represent n in binary
+    :return: the string that represent n in binary
     """
     res = []
     while n != 0:
@@ -27,7 +27,7 @@ def binary(n, length):
 def ind2lc(ind, nbc):
     """
 
-    :param ind: the indice of a position
+    :param ind: the index of a position
     :param nbc: the number of columns in the map
     :return: (number_of_lines, number_of_columns) of this position
     """
@@ -37,7 +37,7 @@ def ind2lc(ind, nbc):
 def is_correct(cv):
     """
 
-    :param cv: a array of positions, 0 for bloc and 1 for lava
+    :param cv: an array of positions, 0 for bloc and 1 for lava
     :return: the bool saying if there isn't anymore lava in the map (the cover is correct)
     """
     return 1 not in cv
@@ -47,7 +47,7 @@ def cover(mp, centers):
     """
 
     :param mp: an array of positions (a map)
-    :param centers: a list of coordinates witch indicates where to place the centers of squares to cover the map
+    :param centers: a list of coordinates which indicates where to place the centers of squares to cover the map
     :return: the map after cover
     """
     nbl, nbc = mp.shape
@@ -67,7 +67,7 @@ def cover(mp, centers):
 
 def good_cover(map1):
     """
-    :type map1: np.ndarray
+
     :param map1: an array of positions (a map)
     :return: the list of list of centers that cover the map so that there isn't anymore lava
     """
